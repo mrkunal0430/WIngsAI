@@ -60,7 +60,7 @@ function Footer() {
               </span>
             </div>
             <p
-              className={`max-w-xs text-[10px] sm:text-[11px] leading-relaxed ${
+              className={`max-w-xs text-[14px] sm:text-[15px] leading-relaxed ${
                 theme === 'dark' ? 'text-slate-400' : 'text-gray-600'
               }`}
             >

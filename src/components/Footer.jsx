@@ -16,11 +16,11 @@ function Footer() {
       gsap.from(footerRef.current, {
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top 85%',
+          start: 'top 90%',
         },
         opacity: 0,
-        y: 50,
-        duration: 0.9,
+        y: 30,
+        duration: 0.8,
         ease: 'power3.out',
       })
     }, footerRef)
@@ -28,31 +28,46 @@ function Footer() {
     return () => ctx.revert()
   }, [])
 
+  const quickLinks = [
+    { label: 'Payment Gateway', href: '#payments' },
+    { label: 'Payouts', href: '#payouts' },
+    { label: 'API Docs', href: '#docs' },
+    { label: 'Pricing', href: '#pricing' },
+  ]
+
+  const resources = [
+    { label: 'Integration Guides', href: '#guides' },
+    { label: 'Status Page', href: '#status' },
+    { label: 'Security', href: '#security' },
+    { label: 'Support', href: '#support' },
+  ]
+
   return (
     <footer
       ref={footerRef}
-      className={`mt-16 md:mt-20 border-t ${
+      className={`mt-12 sm:mt-16 md:mt-20 lg:mt-24 border-t ${
         theme === 'dark'
-          ? 'border-slate-800/80 bg-slate-950/95'
-          : 'border-gray-200 bg-gray-50'
+          ? 'border-slate-800/50 bg-slate-950/50 backdrop-blur-sm'
+          : 'border-gray-200/50 bg-white/50 backdrop-blur-sm'
       }`}
       id="resources"
     >
-      <div className="container-max py-8 md:py-10">
-        <div className="grid gap-6 sm:gap-8 md:gap-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-[1.6fr_repeat(4,minmax(0,1fr))]">
-          <div className="space-y-3 md:space-y-4">
-            <div className="flex items-center gap-2">
+      <div className="container-max py-10 sm:py-12 md:py-14 lg:py-16">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 sm:gap-10 md:gap-12 lg:gap-16">
+          {/* Brand Section */}
+          <div className="flex-1 max-w-md space-y-4 sm:space-y-5">
+            <div className="flex items-center gap-2.5 sm:gap-3">
               <div
-                className={`flex h-8 w-8 items-center justify-center rounded-xl text-lg md:text-xl font-semibold text-white shadow-md ${
+                className={`flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl text-lg sm:text-xl md:text-2xl font-bold text-white shadow-lg transition-transform duration-300 hover:scale-110 ${
                   theme === 'dark'
-                    ? 'bg-gradient-to-tr from-sky-400 to-indigo-500 shadow-sky-500/40'
-                    : 'bg-gradient-to-tr from-blue-500 to-indigo-600 shadow-blue-500/40'
+                    ? 'bg-gradient-to-tr from-sky-400 to-indigo-500 shadow-sky-500/50'
+                    : 'bg-gradient-to-tr from-blue-500 to-indigo-600 shadow-blue-500/50'
                 }`}
               >
                 W
               </div>
               <span
-                className={`text-sm md:text-base font-semibold tracking-tight ${
+                className={`text-lg sm:text-xl md:text-2xl font-bold tracking-tight ${
                   theme === 'dark' ? 'text-slate-50' : 'text-gray-900'
                 }`}
               >
@@ -60,124 +75,155 @@ function Footer() {
               </span>
             </div>
             <p
-              className={`max-w-xs text-[14px] sm:text-[15px] leading-relaxed ${
-                theme === 'dark' ? 'text-slate-400' : 'text-gray-600'
+              className={`text-sm sm:text-base leading-relaxed ${
+                theme === 'dark' ? 'text-slate-300/80' : 'text-gray-600'
               }`}
             >
-              WingsPay is a modern payments and payouts platform helping
-              internet-first businesses orchestrate money movement securely and
-              at scale.
+              Powering the next generation of digital-first payments. Built for
+              modern businesses that demand enterprise-grade reliability and scale.
             </p>
-            <div
-              className={`flex items-center gap-2 md:gap-3 text-[10px] sm:text-[11px] ${
-                theme === 'dark' ? 'text-slate-500' : 'text-gray-500'
-              }`}
-            >
-              <span>© {new Date().getFullYear()} WingsPay Technologies.</span>
-              <span
-                className={`h-1 w-1 rounded-full ${
-                  theme === 'dark' ? 'bg-slate-700' : 'bg-gray-400'
-                }`}
-              />
-              <span>All rights reserved.</span>
-            </div>
-            <div
-              className={`flex gap-2 text-[10px] sm:text-[11px] ${
-                theme === 'dark' ? 'text-slate-500' : 'text-gray-500'
-              }`}
-            >
-              <a
-                href="#support"
-                className={`hover:transition-colors ${
-                  theme === 'dark' ? 'hover:text-slate-300' : 'hover:text-gray-700'
-                }`}
-              >
-                Terms
-              </a>
-              <span
-                className={`h-1 w-1 rounded-full ${
-                  theme === 'dark' ? 'bg-slate-700' : 'bg-gray-400'
-                }`}
-              />
-              <a
-                href="#support"
-                className={`hover:transition-colors ${
-                  theme === 'dark' ? 'hover:text-slate-300' : 'hover:text-gray-700'
-                }`}
-              >
-                Privacy
-              </a>
+            <div className="flex items-center gap-3 sm:gap-4 pt-2">
+              {[
+                { icon: '📧', label: 'Email', href: 'mailto:hello@wingspay.in' },
+                { icon: '💬', label: 'Support', href: '#support' },
+                { icon: '🐦', label: 'Twitter', href: '#twitter' },
+                { icon: '💼', label: 'LinkedIn', href: '#linkedin' },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className={`group flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-xl border transition-all duration-300 hover:scale-110 ${
+                    theme === 'dark'
+                      ? 'border-slate-800 bg-slate-900/50 hover:border-sky-500/50 hover:bg-slate-800/50'
+                      : 'border-gray-200 bg-white hover:border-blue-400 hover:bg-gray-50'
+                  }`}
+                  aria-label={social.label}
+                >
+                  <span className="text-base sm:text-lg group-hover:scale-110 transition-transform">
+                    {social.icon}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
 
-          {[
-            {
-              title: 'Products',
-              items: ['Payment Gateway', 'Payouts', 'UPI Stack', 'Subscriptions'],
-            },
-            {
-              title: 'Solutions',
-              items: ['Marketplaces', 'SaaS & B2B', 'Fintech & Lending', 'D2C & Ecommerce'],
-            },
-            {
-              title: 'Resources',
-              items: ['API Docs', 'Integration Guides', 'Status & Uptime', 'Security'],
-            },
-            {
-              title: 'Connect',
-              items: [],
-            },
-          ].map((section, idx) => (
-            <div key={section.title} className="space-y-2 md:space-y-3">
+          {/* Links Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+            {/* Quick Links */}
+            <div className="space-y-3 sm:space-y-4">
               <h4
-                className={`text-[10px] sm:text-xs font-semibold uppercase tracking-wide ${
+                className={`text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4 ${
                   theme === 'dark' ? 'text-slate-400' : 'text-gray-500'
                 }`}
               >
-                {section.title}
+                Quick Links
               </h4>
-              {section.items.length > 0 ? (
-                <ul
-                  className={`space-y-1 sm:space-y-1.5 text-[10px] sm:text-[11px] ${
-                    theme === 'dark' ? 'text-slate-400' : 'text-gray-600'
-                  }`}
-                >
-                  {section.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="space-y-2">
-                  <div className="flex gap-1.5 sm:gap-2">
-                    {['in', 'X', '↗'].map((icon) => (
-                      <button
-                        key={icon}
-                        className={`inline-flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full text-[10px] sm:text-[11px] ring-1 transition-colors ${
-                          theme === 'dark'
-                            ? 'bg-slate-900 text-slate-300 ring-slate-800 hover:bg-slate-800 hover:text-white'
-                            : 'bg-white text-gray-600 ring-gray-200 hover:bg-gray-50 hover:text-gray-900'
+              <ul className="space-y-2.5 sm:space-y-3">
+                {quickLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className={`group flex items-center gap-2 text-sm sm:text-base transition-colors duration-200 ${
+                        theme === 'dark'
+                          ? 'text-slate-300 hover:text-sky-300'
+                          : 'text-gray-600 hover:text-blue-600'
+                      }`}
+                    >
+                      <span
+                        className={`opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${
+                          theme === 'dark' ? 'text-sky-400' : 'text-blue-500'
                         }`}
                       >
-                        {icon}
-                      </button>
-                    ))}
-                  </div>
-                  <p
-                    className={`text-[10px] sm:text-[11px] ${
-                      theme === 'dark' ? 'text-slate-500' : 'text-gray-500'
-                    }`}
-                  >
-                    For enterprise pricing, reach out to{' '}
-                    <span
-                      className={theme === 'dark' ? 'text-slate-300' : 'text-gray-700'}
-                    >
-                      sales@wingspay.in
-                    </span>
-                  </p>
-                </div>
-              )}
+                        →
+                      </span>
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {link.label}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
+
+            {/* Resources */}
+            <div className="space-y-3 sm:space-y-4">
+              <h4
+                className={`text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4 ${
+                  theme === 'dark' ? 'text-slate-400' : 'text-gray-500'
+                }`}
+              >
+                Resources
+              </h4>
+              <ul className="space-y-2.5 sm:space-y-3">
+                {resources.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className={`group flex items-center gap-2 text-sm sm:text-base transition-colors duration-200 ${
+                        theme === 'dark'
+                          ? 'text-slate-300 hover:text-sky-300'
+                          : 'text-gray-600 hover:text-blue-600'
+                      }`}
+                    >
+                      <span
+                        className={`opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${
+                          theme === 'dark' ? 'text-sky-400' : 'text-blue-500'
+                        }`}
+                      >
+                        →
+                      </span>
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {link.label}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div
+          className={`mt-10 sm:mt-12 md:mt-14 pt-8 sm:pt-10 border-t ${
+            theme === 'dark' ? 'border-slate-800/50' : 'border-gray-200/50'
+          }`}
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <a
+                href="mailto:sales@wingspay.in"
+                className={`text-sm sm:text-base font-medium transition-colors ${
+                  theme === 'dark'
+                    ? 'text-slate-300 hover:text-sky-300'
+                    : 'text-gray-600 hover:text-blue-600'
+                }`}
+              >
+                sales@wingspay.in
+              </a>
+              <span
+                className={`hidden sm:inline-block h-1 w-1 rounded-full ${
+                  theme === 'dark' ? 'bg-slate-700' : 'bg-gray-400'
+                }`}
+              />
+              <span
+                className={`text-sm sm:text-base ${
+                  theme === 'dark' ? 'text-slate-400' : 'text-gray-500'
+                }`}
+              >
+                Available 24/7
+              </span>
+            </div>
+            <div
+              className={`text-xs sm:text-sm ${
+                theme === 'dark' ? 'text-slate-500' : 'text-gray-400'
+              }`}
+            >
+              Made with{' '}
+              <span className="text-red-500">♥</span>{' '}
+              in India
+            </div>
+          </div>
         </div>
       </div>
     </footer>

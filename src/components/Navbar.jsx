@@ -2,18 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useTheme } from "../contexts/ThemeContext";
 
-const languages = [
-  { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "hi", name: "हिंदी", flag: "🇮🇳" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-];
-
 function Navbar() {
   const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState(languages[0]);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -66,22 +57,22 @@ function Navbar() {
           : "bg-white/95 backdrop-blur-sm border-b border-gray-200/60"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 md:h-18 items-center justify-between">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex h-14 sm:h-16 md:h-18 items-center justify-between gap-2 sm:gap-3">
 
           {/* Logo */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
             <div
-              className={`flex h-9 w-9 items-center justify-center rounded-lg 
+              className={`flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg 
               ${theme === "dark"
                 ? "bg-gradient-to-tr from-sky-400 to-indigo-500"
                 : "bg-gradient-to-tr from-blue-500 to-indigo-600"
-              } text-lg font-bold text-white shadow-md`}
+              } text-base sm:text-lg font-bold text-white shadow-md`}
             >
               W
             </div>
             <span
-              className={`text-lg font-bold tracking-tight 
+              className={`text-base sm:text-lg font-bold tracking-tight 
               ${theme === "dark" ? "text-white" : "text-gray-900"}`}
             >
               WingsPay
@@ -106,7 +97,7 @@ function Navbar() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
 
             {/* Support Icon */}
             <button
@@ -125,67 +116,6 @@ function Navbar() {
                 />
               </svg>
             </button>
-
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors 
-                ${theme === "dark"
-                  ? "text-slate-300 hover:bg-slate-800"
-                  : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                <span className="text-base">{selectedLang.flag}</span>
-                <span className="hidden sm:inline">
-                  {selectedLang.code.toUpperCase()}
-                </span>
-                <svg
-                  className={`h-4 w-4 transition-transform ${isLangOpen ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {/* Dropdown */}
-              {isLangOpen && (
-                <>
-                  <div className="fixed inset-0 z-10" onClick={() => setIsLangOpen(false)} />
-                  <div
-                    className={`absolute right-0 top-full mt-2 w-40 rounded-lg border shadow-lg z-20 
-                    ${theme === "dark"
-                      ? "bg-slate-900 border-slate-700"
-                      : "bg-white border-gray-200"
-                    }`}
-                  >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setSelectedLang(lang);
-                          setIsLangOpen(false);
-                        }}
-                        className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm transition-colors 
-                        ${selectedLang.code === lang.code
-                          ? theme === "dark"
-                            ? "bg-slate-800 text-white"
-                            : "bg-gray-100 text-gray-900"
-                          : theme === "dark"
-                            ? "text-slate-300 hover:bg-slate-800"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <span className="text-base">{lang.flag}</span>
-                        <span>{lang.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
 
             {/* Theme Toggle */}
             <button
@@ -214,7 +144,7 @@ function Navbar() {
 
             {/* Login */}
             <button
-              className={`hidden sm:inline-flex items-center rounded-lg border px-4 py-2 text-sm font-medium transition-colors
+              className={`hidden sm:inline-flex items-center rounded-lg border px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium transition-colors
               ${theme === "dark"
                 ? "border-slate-700 text-slate-200 hover:bg-slate-800"
                 : "border-gray-300 text-gray-700 hover:bg-gray-50"
@@ -225,14 +155,14 @@ function Navbar() {
 
             {/* Sign Up */}
             <button
-              className={`flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all
+              className={`flex items-center gap-1 sm:gap-1.5 rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white transition-all
               ${theme === "dark"
                 ? "bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 shadow-lg"
                 : "bg-blue-600 hover:bg-blue-700 shadow-md"
               }`}
             >
               Sign Up
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>

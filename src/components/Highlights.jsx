@@ -11,18 +11,21 @@ const HIGHLIGHTS = [
     title: 'Designed for scale from day zero.',
     body: 'Orchestrate complex payment flows across multiple entities, currencies and methods while maintaining complete control and observability.',
     stats: ['10M+ monthly transactions', 'Active-active architecture', '99.95% uptime SLA'],
+    img: 'payments.jpg',
   },
   {
     label: 'Payouts & Disbursals',
     title: 'Instant payouts for your ecosystem.',
     body: 'Disburse funds to vendors, partners and customers in real time with powerful approval workflows and audit-ready logs.',
     stats: ['1.3s median payout time', 'Real-time reconciliation', 'Configurable approval rules'],
+    img: 'payouts.webp',
   },
   {
     label: 'Compliance & Security',
     title: 'Compliance handled, by design.',
     body: 'Built with India-first regulatory requirements at the core so your teams can move fast while staying compliant and secure.',
     stats: ['PCI-DSS Level 1', 'Tokenization & vaulting', 'Granular access controls'],
+    img: 'compliance.jpg',
   },
 ]
 
@@ -59,7 +62,7 @@ function Highlights() {
     <section
       id="highlights"
       ref={sectionRef}
-      className="container-max space-y-8 md:space-y-10 lg:space-y-12"
+      className="container-max space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12"
     >
       <div className="flex flex-col gap-2 md:gap-3 md:flex-row md:items-end md:justify-between">
         <div className="space-y-2 md:space-y-3">
@@ -81,14 +84,14 @@ function Highlights() {
         </div>
       </div>
 
-      <div className="space-y-5 md:space-y-6">
+      <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
         {HIGHLIGHTS.map((item, index) => (
           <div
             key={item.title}
             ref={(el) => {
               blocksRef.current[index] = el
             }}
-            className={`grid gap-4 md:gap-6 rounded-2xl md:rounded-3xl border p-4 md:p-5 shadow-lg md:grid-cols-2 md:items-center ${
+            className={`grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 rounded-2xl md:rounded-3xl border p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg md:grid-cols-2 md:items-center ${
               theme === 'dark'
                 ? 'border-slate-800/70 bg-slate-900/70 shadow-[0_22px_60px_rgba(15,23,42,0.9)]'
                 : 'border-gray-200 bg-white shadow-[0_22px_60px_rgba(0,0,0,0.08)]'
@@ -134,25 +137,15 @@ function Highlights() {
               </div>
             </div>
 
-            <div className="relative h-40 sm:h-44 overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-sky-500/15 via-indigo-500/10 to-sky-400/10 ring-1 ring-sky-500/30">
-              {/* Placeholder chart / illustration */}
-              <div className="absolute inset-0 opacity-80">
-                <div
-                  className={`absolute inset-x-4 sm:inset-x-6 bottom-4 sm:bottom-6 h-20 sm:h-24 rounded-lg sm:rounded-xl backdrop-blur-md ring-1 ${
-                    theme === 'dark'
-                      ? 'bg-slate-950/60 ring-slate-800/80'
-                      : 'bg-white/60 ring-gray-200/80'
-                  }`}
-                />
-                <div className="absolute inset-x-6 sm:inset-x-10 bottom-6 sm:bottom-8 flex h-12 sm:h-16 items-end gap-1.5 sm:gap-2">
-                  <div className="flex-1 rounded-t-full bg-gradient-to-t from-sky-500/40 to-sky-400/0" />
-                  <div className="flex-1 rounded-t-full bg-gradient-to-t from-indigo-500/40 to-indigo-400/0" />
-                  <div className="flex-1 rounded-t-full bg-gradient-to-t from-emerald-500/40 to-emerald-400/0" />
-                  <div className="flex-1 rounded-t-full bg-gradient-to-t from-sky-500/40 to-sky-400/0" />
-                </div>
-              </div>
+           <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 overflow-hidden rounded-xl md:rounded-2xl bg-transparent">
+              <img 
+                src={item.img} 
+                alt="highlight image" 
+                className="w-full h-full object-cover object-center rounded-xl md:rounded-2xl" 
+                loading="lazy"
+              />
             </div>
-          </div>
+          </div> 
         ))}
       </div>
     </section>

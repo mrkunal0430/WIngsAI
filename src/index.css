@@ -24,6 +24,21 @@
   }
 }
 
+/* Image optimization and responsive handling */
+@layer utilities {
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Smooth image loading */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
 /* Theme-specific body styles */
 html.dark body {
   @apply bg-slate-950 text-slate-50;

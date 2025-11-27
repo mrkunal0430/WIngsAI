@@ -4,14 +4,14 @@ import { useTheme } from '../contexts/ThemeContext'
 
 // Placeholder company logos - you can replace these with actual logo images
 const companies = [
-  { name: 'Company 1', logo: '🏢' },
-  { name: 'Company 2', logo: '💼' },
-  { name: 'Company 3', logo: '🚀' },
-  { name: 'Company 4', logo: '⭐' },
-  { name: 'Company 5', logo: '🎯' },
-  { name: 'Company 6', logo: '💡' },
-  { name: 'Company 7', logo: '🌟' },
-  { name: 'Company 8', logo: '⚡' },
+  { img: '1.png' },
+  { img: '2.png' },
+  { img: '3.png' },
+  { img: '4.png' },
+  { img: '5.png' },
+  { img: '6.png' },
+  { img: '7.png' },
+  { img: '8.webp' },
 ]
 
 // Duplicate for seamless loop
@@ -57,19 +57,19 @@ function LogoSlider() {
         <div className="relative overflow-hidden">
           <div
             ref={sliderRef}
-            className="flex items-center gap-8 md:gap-12 lg:gap-16"
+            className="flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12"
             style={{ width: '300%' }}
           >
             {duplicatedCompanies.map((company, index) => (
               <div
-                key={`${company.name}-${index}`}
-                className={`flex flex-shrink-0 items-center justify-center h-16 md:h-20 w-32 md:w-40 rounded-xl transition-all ${
-                  theme === 'dark'
-                    ? 'bg-slate-900/50 border border-slate-800/50 hover:border-slate-700 hover:bg-slate-900'
-                    : 'bg-white border border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                }`}
+                key={index}
+                className="flex flex-shrink-0 items-center justify-center h-12 sm:h-16 md:h-20 lg:h-24 w-24 sm:w-32 md:w-40 lg:w-48 p-2 sm:p-3 md:p-4"
               >
-                <span className="text-3xl md:text-4xl">{company.logo}</span>
+                <img 
+                  src={company.img} 
+                  alt="company logo" 
+                  className="w-full h-full object-contain object-center transition-all duration-300 hover:scale-110 opacity-70 hover:opacity-100"
+                />
               </div>
             ))}
           </div>

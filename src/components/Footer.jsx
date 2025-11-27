@@ -39,7 +39,7 @@ function Footer() {
       id="resources"
     >
       <div className="container-max py-8 md:py-10">
-        <div className="grid gap-6 md:gap-8 md:grid-cols-[1.6fr_repeat(4,minmax(0,1fr))]">
+        <div className="grid gap-6 sm:gap-8 md:gap-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-[1.6fr_repeat(4,minmax(0,1fr))]">
           <div className="space-y-3 md:space-y-4">
             <div className="flex items-center gap-2">
               <div

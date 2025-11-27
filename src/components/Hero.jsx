@@ -44,7 +44,7 @@ function Hero() {
   return (
     <section
       ref={rootRef}
-      className="container-max flex flex-col items-center gap-8 md:gap-10 pt-12 md:pt-16 lg:pt-20 md:flex-row md:items-stretch"
+      className="container-max flex flex-col items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 pt-6 sm:pt-8 md:pt-10 lg:pt-12 md:flex-row md:items-center"
     >
       <div
         ref={textRef}
@@ -118,10 +118,10 @@ function Hero() {
         </div>
       </div>
 
-      <div className="flex flex-1 items-center justify-center md:justify-end">
+      <div className="flex flex-1 items-center justify-center md:justify-end w-full">
         <div
           ref={imageRef}
-          className={`relative w-full max-w-md rounded-2xl md:rounded-3xl border p-3 sm:p-4 shadow-lg ${
+          className={`relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl rounded-2xl md:rounded-3xl border p-3 sm:p-4 md:p-5 lg:p-6 shadow-lg ${
             theme === 'dark'
               ? 'border-slate-800/70 bg-slate-900/80 shadow-[0_24px_80px_rgba(15,23,42,0.9)]'
               : 'border-gray-200 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.1)]'
@@ -146,7 +146,7 @@ function Hero() {
           </div>
 
           <div
-            className={`space-y-2 sm:space-y-3 rounded-xl sm:rounded-2xl p-3 sm:p-4 ring-1 ${
+            className={`space-y-2 sm:space-y-3 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 ring-1 ${
               theme === 'dark'
                 ? 'bg-slate-900/80 ring-slate-800/70'
                 : 'bg-gray-50 ring-gray-200'
@@ -169,7 +169,14 @@ function Hero() {
             >
               ₹ 12,84,92,310
             </p>
-            <div className="h-20 sm:h-24 rounded-xl bg-gradient-to-br from-sky-500/10 via-indigo-500/10 to-sky-400/5" />
+            <div className="relative w-full mt-3 sm:mt-4 overflow-hidden rounded-lg">
+              <img 
+                src="OIP.webp" 
+                alt="transactions" 
+                className="w-full h-auto max-h-40 sm:max-h-48 md:max-h-56 lg:max-h-64 object-contain object-center" 
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <div className="mt-3 sm:mt-4 grid grid-cols-3 gap-2 sm:gap-3 text-[10px] sm:text-[11px]">
